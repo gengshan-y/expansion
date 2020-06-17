@@ -1,0 +1,12 @@
+precomputed-kitti.zip
+precomputed/
+weights/
+iter_counts*.txt
+tmp/
+*.lprof
+*.pyc
+models/*.pyc
+*.npy
+.ipynb_checkpoints/*
+.ipynb_checkpoints
+results/*
