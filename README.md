@@ -16,24 +16,27 @@ If you find this work useful, please consider citing our paper:
 }
 ```
 
+**Requirement**
+- python3
+- opencv
+- pytorch 1.2.0 (may also be compatible with other versions)
+- tensorboard (only for training)
+
+**Useful tools** (optional)
+- [gdown](https://github.com/wkentaro/gdown) for downloading from google drive
+- [cvkit](https://github.com/roboception/cvkit) for visualizing .pfm files
+
 
 ## Precomputed results
-We provide precompted optical flow, optical expansion, and monocular depth (from [monodepth2](https://github.com/nianticlabs/monodepth2)) for kitti validation set. 
+We provide precomputed optical flow, optical expansion, and monocular depth (from [monodepth2](https://github.com/nianticlabs/monodepth2)) for kitti validation set. 
 This should produce monocular scene flow results very close to Tab.1. 
-
+```
+gdown https://drive.google.com/uc?id=1gThKsHOfsoGiLvgydVrDlqsvku0X_wjN -O ./precomputed.zip
+unzip precomputed.zip
+```
 See demo.ipynb for more details.
 
 ## Inference
-
-**Requirement**
-- python3
-- pytorch 1.2.0
-- opencv
-- tensorboard
-
-**Useful tools** (optional)
-- [gdown](https://github.com/wkentaro/gdown) for downloading weights from google drive
-- [cvkit](https://github.com/roboception/cvkit) for visualizing .pfm files
 
 ### Pretrained models
 Download pre-trained models to `./weights` (assuming gdown is installed, ~50MB each),
@@ -43,8 +46,8 @@ mkdir weights/exp-driving
 mkdir weights/exp-kitti-train
 mkdir weights/exp-kitti-trainval
 gdown https://drive.google.com/uc?id=1KMEqXlisLgK4n9alWRbgIWch7TTye56u -O ./weights/exp-driving/exp-driving.pth
-gdown https://drive.google.com/uc?id=1ZjPc7P743R3b_5MbBbU_VpUMULYo-SWk -O ./weights/exp-driving/exp-kitti-train.pth
-gdown https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u -O ./weights/exp-driving/exp-kitti-trainval.pth
+gdown https://drive.google.com/uc?id=1ZjPc7P743R3b_5MbBbU_VpUMULYo-SWk -O ./weights/exp-kitti-train/exp-kitti-train.pth
+gdown https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u -O ./weights/exp-kitti-trainval/exp-kitti-trainval.pth
 ```
 
 |modelname | training-set | flow-basemodel | flow-error (Fl-err/EPE)  | expansion-error (1e4) | motion-in-depth-error (1e4)|
