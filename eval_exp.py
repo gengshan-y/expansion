@@ -1,8 +1,6 @@
 import glob
 import numpy as np
 from matplotlib import pyplot as plt
-import sys
-sys.path.insert(0,'/home/gengshay/code/SF/hier-flow/')
 from utils.flowlib import read_flow, flow_to_image
 from utils.util_flow import write_flow
 from utils.pfm import readPFM
@@ -10,7 +8,7 @@ import cv2
 
 import pdb
 import PIL.Image as Image
-from utils.depthlib import load_calib_cam_to_cam, disparity_loader, triangulation
+from dataloader.depthloader import disparity_loader
 from utils.sintel_io import disparity_read
 from joblib import Parallel, delayed
 
