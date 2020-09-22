@@ -49,7 +49,7 @@ mkdir weights/robust
 gdown https://drive.google.com/uc?id=1KMEqXlisLgK4n9alWRbgIWch7TTye56u -O ./weights/exp-driving/exp-driving.pth
 gdown https://drive.google.com/uc?id=1ZjPc7P743R3b_5MbBbU_VpUMULYo-SWk -O ./weights/exp-kitti-train/exp-kitti-train.pth
 gdown https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u -O ./weights/exp-kitti-trainval/exp-kitti-trainval.pth
-gdown https://drive.google.com/uc?id=1591sjVSt_ppHqmQ-59Tirw_SozjgeM8D -O ./weights/robust.pth
+gdown https://drive.google.com/uc?id=1591sjVSt_ppHqmQ-59Tirw_SozjgeM8D -O ./weights/robust/robust.pth
 ```
 
 |modelname | training-set | flow-basemodel | flow-error (Fl-err/EPE)  | expansion-error (1e4) | motion-in-depth-error (1e4)|
