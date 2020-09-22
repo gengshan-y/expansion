@@ -65,11 +65,13 @@ C: Chairs, T: Things, M: Monkaa, D: Driving, K: our KITTI training set, S: our S
 ### Try on a video sequence (>=2 frames)
 <p align="center">
   <img src="cross-datasets.png" alt="" width="800" />
+
 Top: reference images; Bottom: mition-in-depth estimations (with kitti-finetuned model)
 </p>
 
 <p align="center">
   <img src="robust_DAVIS.png" alt="" width="600" />
+
 Top left: overlaid two frames; Top right: flow; Bottom left: uncertainty; Bottom right: mition-in-depth (robust model)
 </p>
 
