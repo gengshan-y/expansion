@@ -133,7 +133,7 @@ class VCN(nn.Module):
     md defines maximum displacement for each level, following a coarse-to-fine-warping scheme
     fac defines squeeze parameter for the coarsest level
     """
-    def __init__(self, size, md=[4,4,4,4,4], fac=1.):
+    def __init__(self, size, md=[4,4,4,4,4], fac=1.,exp_unc=False):  # exp_uncertainty
         super(VCN,self).__init__()
         self.md = md
         self.fac = fac
@@ -317,8 +317,11 @@ class VCN(nn.Module):
         self.dcnetv4 = conv(1,   32, kernel_size=3, stride=1, padding=1,dilation=1) # 
         self.dcnetv5 = conv(12*81,   32, kernel_size=3, stride=1, padding=1,dilation=1) # 
         self.dcnetv6 = conv(4,   32, kernel_size=3, stride=1, padding=1,dilation=1) # 
-        self.dcnet = bfmodule(128,1)
-
+        if exp_unc:       
+            self.dcnet = bfmodule(128,2)
+        else:
+            self.dcnet = bfmodule(128,1)
+        
         for m in self.modules():
             if isinstance(m, nn.Conv3d):
                 n = m.kernel_size[0] * m.kernel_size[1]*m.kernel_size[2] * m.out_channels

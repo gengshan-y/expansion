@@ -45,9 +45,11 @@ mkdir weights
 mkdir weights/exp-driving
 mkdir weights/exp-kitti-train
 mkdir weights/exp-kitti-trainval
+mkdir weights/robust
 gdown https://drive.google.com/uc?id=1KMEqXlisLgK4n9alWRbgIWch7TTye56u -O ./weights/exp-driving/exp-driving.pth
 gdown https://drive.google.com/uc?id=1ZjPc7P743R3b_5MbBbU_VpUMULYo-SWk -O ./weights/exp-kitti-train/exp-kitti-train.pth
 gdown https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u -O ./weights/exp-kitti-trainval/exp-kitti-trainval.pth
+gdown https://drive.google.com/uc?id=1591sjVSt_ppHqmQ-59Tirw_SozjgeM8D -O ./weights/robust.pth
 ```
 
 |modelname | training-set | flow-basemodel | flow-error (Fl-err/EPE)  | expansion-error (1e4) | motion-in-depth-error (1e4)|
@@ -55,11 +57,20 @@ gdown https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u -O ./weig
 |[exp-driving](https://drive.google.com/uc?id=1KMEqXlisLgK4n9alWRbgIWch7TTye56u)        | Driving                   | flow-things          | 25.5%/8.874px   | 234.8 | 172.4 |
 |[exp-kitti-train](https://drive.google.com/uc?id=1ZjPc7P743R3b_5MbBbU_VpUMULYo-SWk)    | Driving->KITTI-train      | flow-kitti-train     | 6.0%/1.644px    | 107.3 | 73.6  |
 |[exp-kitti-trainval](https://drive.google.com/uc?id=11Cf3NxbzGq2rdwdI2_HuQDlwIWNWMu7u) | Driving->KITTI-trainval   | flow-kitti-trainval  | 3.9%/1.144px    | 87.5  | 52.2  |
+|[robust](https://drive.google.com/uc?id=1591sjVSt_ppHqmQ-59Tirw_SozjgeM8D)             | TMDKSGV                   | CTMDKSHG             | 9.3%/3.366px    | 83.1  | 55.7  |
+
+** The "robust" model is trained on a mixture of datasets, aiming for improved cross-dataset generalization ability, see [robust vision challenge](http://www.robustvision.net/index.php).
+C: Chairs, T: Things, M: Monkaa, D: Driving, K: our KITTI training set, S: our Sintel training set, H: HD1K, G: GTAV (not released)
 
 ### Try on a video sequence (>=2 frames)
 <p align="center">
   <img src="cross-datasets.png" alt="" width="800" />
 Top: reference images; Bottom: mition-in-depth estimations (with kitti-finetuned model)
+</p>
+
+<p align="center">
+  <img src="robust_DAVIS.png" alt="" width="600" />
+Top left: overlaid two frames; Top right: flow; Bottom left: uncertainty; Bottom right: mition-in-depth (robust model)
 </p>
 
 Run for [KITTI](http://www.cvlibs.net/datasets/kitti/) sequence,
@@ -69,15 +80,23 @@ CUDA_VISIBLE_DEVICES=0 python submission.py --dataset seq  --datapath ./input/ki
 ```
 Run for [Blackbird](https://github.com/mit-fast/Blackbird-Dataset) sequence,
 ```
+modelname=exp-kitti-trainval
 CUDA_VISIBLE_DEVICES=0 python submission.py --dataset seq  --datapath ./input/blackbird   --outdir ./weights/$modelname/ --loadmodel ./weights/$modelname/$modelname.pth  --testres 1 --fac 2 --maxdisp 512
 ```
 Run for [HD1K](http://hci-benchmark.iwr.uni-heidelberg.de/),
 ```
+modelname=exp-kitti-trainval
 CUDA_VISIBLE_DEVICES=1 python submission.py --dataset seq  --datapath ./input/HD1K_000000_001x/   --outdir ./weights/$modelname/ --loadmodel ./weights/$modelname/$modelname.pth  --testres 1 --fac 2 --maxdisp 512
 ```
 Run for [Sintel](http://sintel.is.tue.mpg.de/downloads),
 ```
+modelname=exp-kitti-trainval
 CUDA_VISIBLE_DEVICES=1 python submission.py --dataset seq  --datapath ./input/Sintel/   --outdir ./weights/$modelname/ --loadmodel ./weights/$modelname/$modelname.pth  --testres 1 --fac 2 --maxdisp 512
+```
+Run the robust model on [DAVIS](https://davischallenge.org/index.html),
+```
+modelname=robust
+CUDA_VISIBLE_DEVICES=1 python submission.py --dataset seq  --datapath ./input/DAVIS/   --outdir ./weights/$modelname/ --loadmodel ./weights/$modelname/$modelname.pth  --testres 1 --fac 1 --maxdisp 256
 ```
 
 Results will be saved to `./weights/$modelname/seq/` in `.pfm` format.

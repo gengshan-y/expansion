@@ -78,7 +78,8 @@ mean_R = [[0.33,0.33,0.33]]
 
 # construct model, VCN-expansion
 from models.VCN_exp import VCN
-model = VCN([1, maxw, maxh], md=[int(4*(args.maxdisp/256)),4,4,4,4], fac=args.fac)
+model = VCN([1, maxw, maxh], md=[int(4*(args.maxdisp/256)),4,4,4,4], fac=args.fac, 
+  exp_unc=('robust' in args.loadmodel))  # expansion uncertainty only in the new model
 model = nn.DataParallel(model, device_ids=[0])
 model.cuda()
 
