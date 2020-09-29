@@ -120,7 +120,7 @@ To visualize occlusion estimation (current occlusion prediction modules gives wr
 sv weights/$modelname/seq/occ*
 ```
 ### Evaluate on KITTI
-Download [KITTI-sceneflow](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) dataset, and run
+Download [KITTI-sceneflow](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) dataset, our [expansion extension](https://drive.google.com/file/d/1Sad7uItHZT4Lj8uIVt4PoePOqfLfenNP/view?usp=sharing), and run
 ```
 bash run_eval.sh
 ```
