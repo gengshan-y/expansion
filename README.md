@@ -28,13 +28,22 @@ If you find this work useful, please consider citing our paper:
 
 
 ## Precomputed results
-We provide precomputed optical flow, optical expansion, and monocular depth (from [monodepth2](https://github.com/nianticlabs/monodepth2)) for kitti validation set. 
+We provide precomputed optical flow, optical expansion, and monocular depth (from [monodepth2](https://github.com/nianticlabs/monodepth2)) for kitti sceneflow training set (equiv. to ours train+val). 
 This should produce monocular scene flow results very close to Tab.1. 
 ```
-gdown https://drive.google.com/uc?id=1gThKsHOfsoGiLvgydVrDlqsvku0X_wjN -O ./precomputed.zip
+gdown https://drive.google.com/uc?id=1ConhQQkfbiDtHDxogKazA1AXqf4NL0KG -O ./precomputed.zip
 unzip precomputed.zip
 ```
-See demo.ipynb for more details.
+See demo-expansion.ipynb for more details.
+
+## *Rigid* depth inference
+We provide the script to compute (1) depth from flow triangulation and (2) depth from normalized 3D flow. This corresponds to Sec. 4.5 rigid depth estimation in the paper, and produces the following result.
+Precomputed camera poses on KITTI sceneflow training set is included in precomputed.zip.
+
+<p align="center">
+  <img src="depth.png" alt="" width="800" />
+
+See demo-expansion.ipynb for more details.
 
 ## Inference
 
