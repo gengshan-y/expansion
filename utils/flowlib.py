@@ -26,6 +26,27 @@ Flow Section
 =============
 """
 
+def point_vec(img,flow,skip=10):
+    skip=20
+    maxsize=1000.
+    extendfac=2.
+    resize_factor = max(1,int(max(maxsize/img.shape[0], maxsize/img.shape[1])))
+    meshgrid = np.meshgrid(range(img.shape[1]),range(img.shape[0]))
+    dispimg = cv2.resize(img[:,:,::-1].copy(), None,fx=resize_factor,fy=resize_factor)
+    colorflow = flow_to_image(flow).astype(int)
+    for i in range(img.shape[1]): # x 
+        for j in range(img.shape[0]): # y
+            if flow[j,i,2] != 1: continue
+            if j%skip!=0 or i%skip!=0: continue
+            xend = int((meshgrid[0][j,i]+extendfac*flow[j,i,0])*resize_factor)
+            yend = int((meshgrid[1][j,i]+extendfac*flow[j,i,1])*resize_factor)
+            leng = np.linalg.norm(flow[j,i,:2]*extendfac)
+            if leng<1:continue
+            dispimg = cv2.arrowedLine(dispimg, (meshgrid[0][j,i]*resize_factor,meshgrid[1][j,i]*resize_factor),\
+                                      (xend,yend),
+                                      (int(colorflow[j,i,2]),int(colorflow[j,i,1]),int(colorflow[j,i,0])),4,tipLength=2/leng,line_type=cv2.LINE_AA)
+    return dispimg
+
 
 def show_flow(filename):
     """
@@ -360,6 +381,13 @@ def read_image(filename):
     im = np.array(img)
     return im
 
+def warp_flow(img, flow):
+    h, w = flow.shape[:2]
+    flow = flow.copy().astype(np.float32)
+    flow[:,:,0] += np.arange(w)
+    flow[:,:,1] += np.arange(h)[:,np.newaxis]
+    res = cv2.remap(img, flow, None, cv2.INTER_LINEAR)
+    return res
 
 def warp_image(im, flow):
     """
