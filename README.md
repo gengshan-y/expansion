@@ -29,12 +29,15 @@ If you find this work useful, please consider citing our paper:
 
 ## Precomputed results
 We provide precomputed optical flow, optical expansion, and monocular depth (from [monodepth2](https://github.com/nianticlabs/monodepth2)) for kitti sceneflow training set (equiv. to ours train+val). 
-This should produce monocular scene flow results very close to Tab.1. 
+This should produce monocular scene flow results very close to Tab.1.
+
+It also includes precomputed results for Tab. 3 lidar scene flow.
 ```
-gdown https://drive.google.com/uc?id=1ConhQQkfbiDtHDxogKazA1AXqf4NL0KG -O ./precomputed.zip
+gdown https://drive.google.com/uc?id=1mNRuEHwMEo0HE6oR3ZY1S1u9_NE4WjfT -O ./precomputed.zip
+      
 unzip precomputed.zip
 ```
-See demo-expansion.ipynb for more details.
+See demo-expansion.ipynb and lidar-scene-flow.ipynb for more details.
 
 ## *Rigid* depth inference
 We provide the script to compute (1) depth from flow triangulation and (2) depth from normalized 3D flow. This corresponds to Sec. 4.5 rigid depth estimation in the paper, and produces the following result.
@@ -147,7 +150,6 @@ and results will be saved to `./weights/$modelname/2015test`.
 Simply do `d2 = d1/tau`, where `d1` is the first frame disparity and `tau` is the motion-in-depth. 
 
 See demo.ipynb for a detailed walk-through of producing monocular scene flow results on KITTI.
-
 
 ## Training
 **Note on flow backbone** 
