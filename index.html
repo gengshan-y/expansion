@@ -1,0 +1,211 @@
+
+<!-- saved from url=(0047)https://www.cs.cmu.edu/~peiyunh/tiny/index.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="StyleSheet" href="./cvpr20expansion/style.css" type="text/css" media="all">
+
+    <title>Upgrading Optical Flow to 3D Scene Flow through Optical Expansion</title>
+    <style type="text/css">
+      body {
+	    font-family : Arial;
+	    background-color : #f2f2f2;
+	    font-size : 15px;
+      }
+
+      .content {
+	    width : 800px;
+	    padding : 25px 25px;
+	    margin : 25px auto;
+	    background-color : #fff;
+	    border-radius: 20px;
+      }
+      .description {
+        font-family: "Times";
+        white-space: pre;
+        text-align: left;
+      }
+
+      .content-title {
+	    background-color : inherit;
+      margin-top: 5px;
+      padding-top: 5px;
+	    margin-bottom : 0;
+	    padding-bottom : 0;
+      }
+
+      a, a:visited {
+	    text-decoration: none;
+	    color : blue;
+      }
+
+      .anchor {
+      color: inherit;
+      }
+      #authors {
+	    text-align : center;
+      }
+
+      #conference {
+	    text-align : center;
+	    font-style : italic;
+      }
+
+      #authors a {
+	    margin : 0 10px;
+      }
+
+      h1 {
+	    text-align : center;
+	    font-family : Arial;
+	    font-size : 35px;
+      }
+
+      h2 {
+	    font-family : Arial;
+	    font-size : 25px;
+	    padding : 0; margin : 10px;
+      }
+
+      h3 {
+	    font-family : Arial;
+	    font-size : 20px;
+	    padding : 0; margin : 10px;
+      }
+
+      p {
+	    line-height : 130%;
+	    margin : 10px;
+      }
+
+      li {
+	    margin : 10px 0;
+      }
+
+      .samples {
+	    float : left;
+	    width : 50%;
+	    text-align : center;
+      }
+
+      .cond {
+	    float : left;
+	    margin : 0 40px;
+      }
+
+      .cond-container {
+	    width : 700px;
+	    margin : 0 auto;
+	    text-align : center;
+      }
+    </style>
+
+  </head>
+
+
+
+  <body>
+
+    <div class="content content-title" style="text-align: center">
+	    <h1>Upgrading Optical Flow to 3D Scene Flow through Optical Expansion</h1>
+	<big style="color:grey;">
+                    CVPR 2020
+        </big>    
+	<p id="authors">
+      <table align="center" style="width:60%; text-align:center; table-layout: fixed">
+        <tr>
+	      <th><a href="https://gengshan-y.github.io/">Gengshan Yang<sup>1</sup></a></th>
+          <th><a href="http://www.cs.cmu.edu/~deva/">Deva Ramanan<sup>1,2</sup></a></th>
+        </tr>
+      </table>
+      <sup>1</sup>Robotics Institute, Carnegie Mellon University<br>
+      <sup>2</sup>Argo AI
+	    </p>
+	    <p>
+	    </p>
+    </div>
+
+
+
+
+    <div class="content">
+      <figure style="font-style: italic; font-weight: normal; margin: 0px; padding: 0px; border: 0px; text-align: left">
+<!--	        <img src="./cvpr20expansion/expansion-kitti.gif" width="49%" alt="teaser" style="margin-bottom:10px; margin-right:10px">
+	        <img src="./cvpr20expansion/expansion-kitti2.gif" width="49%" alt="teaser" style="margin-bottom:10px">
+	        <img src="./cvpr20expansion/expansion-hawk.gif" width="100%" alt="teaser" style="margin-bottom:10px">
+-->
+         <video autoplay controls loop width="810" height="520">
+          <source  src="./cvpr20expansion/teaserv1.mp4" type="video/mp4">
+         </video>
+         <br>
+	      <figcaption> Optical flow vs optical expansion, where white indicates larger expansion / motion towards the camera. We upgrade optical flow to 3D scene flow using dense optical expansion, which reveals changes in depth and can be reliably inferred from two frames.
+      </figure>
+    </div>
+    
+    
+    
+    
+    
+    
+    <div class="content">
+      <h2>Abstract</h2>
+      <p>
+        We propose an approach of upgrading 2D optical flow to 3D scene flow. Our key insight is that dense optical expansion -- which can be reliably inferred from frame pairs -- reveals changes in depth of scene elements, e.g., things moving closer will get bigger. When integrated with camera intrinsics, optical expansion can be converted into a normalized 3D scene flow vector that provides meaningful directions of 3D movement, but not their magnitude (due to an underlying scale ambiguity). We show that dense optical expansion between two views can be learned from annotated optical flow maps or unlabeled video sequences, and applied to a variety of dynamic 3D perception tasks including monocular scene flow, LiDAR scene flow, and time-to-collision estimation, often demonstrating significant improvement over prior art.
+	    </p>
+      <div id="teaser" style="margin: 12px; text-align: left;border-top: 1px solid lightgray;padding-top: 12px;">
+	<a href="http://www.contrib.andrew.cmu.edu/~gengshay/wordpress/wp-content/uploads/2020/03/expansion.pdf">
+	        <strong>[Paper]</strong>
+	      </a>           
+	<a href="./cvpr20expansion/2227-oral.mp4">
+	        <strong>[5min talk]</strong>
+	      </a>           
+	<a href="./cvpr20expansion/2227-talk.pdf">
+	        <strong>[Slides]</strong>
+	      </a>           
+      </div>
+    </div>
+
+    <div class="content">
+            <h2>Bibtex</h2>
+            <p class="description">
+@inproceedings{yang2020upgrading,
+  title={Upgrading Optical Flow to 3D Scene Flow through Optical Expansion},
+  author={Yang, Gengshan and Ramanan, Deva},
+  booktitle={CVPR},
+  year={2020}
+}
+	    </p></div>
+    
+    <div class="content">
+      <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
+      </div>
+      <h2>1min Video</h2>
+         <video controls width="810" height="520">
+          <source  src="./cvpr20expansion/2227-1min.mp4" type="video/mp4">
+         </video>
+    </div>
+
+    <div class="content">
+      <div style="float: right; width:70px; margin-top: 0px; margin-bottom: 25px">
+	      <a href="https://github.com/gengshan-y/">
+	        <img src="./cvpr20expansion/github.png" width="100%" alt="github">
+	      </a>
+      </div>
+      <h2>Code</h2>
+      <p>
+      Code is available <a href="https://github.com/gengshan-y/expansion">here.</a>
+      </p>
+    </div>
+
+    <div class="content">
+	    <h2>Acknowledgments</h2>
+	    <p>This work was supported by the <a href="https://labs.ri.cmu.edu/argo-ai-center/">CMU Argo AI Center for Autonomous Vehicle Research</a>. Also thanks to Chaoyang Wang and Peiyun Hu for insightful discussions, and many friends at CMU for valuable suggestions. The teaser video is inspired by "<a href="https://arxiv.org/abs/1901.03360">Unsupervised Moving Object Detection via Contextual Information Separation, CVPR 2019."</p>
+    </div>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+<tr><td>
+    <p align="right"><font size="2">
+        <a href="https://www.cs.cmu.edu/~peiyunh/">Webpage design borrowed from Peiyun Hu</a> </font>
+    </p>
+</td></tr>
+</table>
+
+</body></html> 
